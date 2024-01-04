@@ -69,7 +69,7 @@ exports.getOrdersByMesa = async (req, res) => {
 
 exports.createNewOrder = async (req, res) => {
     try {
-        const { _id,numero_mesa, nombre_mesero, orden } = req.body;
+        const { _id,numero_mesa, user_mesero, orden,status } = req.body;
 
         // Calcula el total de la orden sumando los precios de los productos
         const total_orden = orden.reduce((total, producto) => {
@@ -80,7 +80,7 @@ exports.createNewOrder = async (req, res) => {
         const fecha = new Date();
 
         // Crea la nueva orden con los datos calculados
-        const newOrder = new Order({ _id,numero_mesa, nombre_mesero, orden, total_orden, fecha });
+        const newOrder = new Order({ _id,numero_mesa, user_mesero, orden, total_orden, fecha, status });
 
         // Guarda la nueva orden en la base de datos
         await newOrder.save();
