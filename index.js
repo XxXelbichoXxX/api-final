@@ -5,6 +5,7 @@ require('./utils/mongoConnection');
 
 const ordersRouter = require('./routers/orders.router');
 const usersRouter = require('./routers/users.router');
+const productsRouter = require('./routers/products.router');
 
 const app = express();
 const port = process.env.PORT || 3003;
@@ -22,6 +23,7 @@ app.use(express.json({ limit: '50mb' }));
 
 app.use('/orders', ordersRouter);
 app.use('/users', usersRouter);
+app.use('/products', productsRouter);
 
 app.listen(port, () => {
   console.log('Servidor iniciado en http://localhost:' + port);
