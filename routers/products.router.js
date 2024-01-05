@@ -7,10 +7,10 @@ router.get('/', productController.getProducts);
 
 router.get('/:productId', productController.getProductsById);
 
-router.post('/', authMiddleware.authenticateToken, productController.newProduct);
+router.post('/', productController.newProduct);
 
-router.put('/:productId', authMiddleware.authenticateToken, productController.updateProduct);
+router.put('/:productId', productController.updateProduct);
 
-router.delete('/:productId', authMiddleware.authenticateToken, productController.deleteProduct);
+router.delete('/:productId', productController.deleteProduct);
 
 module.exports = router;
