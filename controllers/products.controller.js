@@ -32,8 +32,8 @@ exports.getProducts = async (req, res) => {
 
 exports.newProduct = async (req, res) => {
     try{
-        const {id, saucer_name, category, description, price} = req.body;
-        const newProduct = new Product({id, saucer_name, category, description, price});
+        const {id, saucer_name, category, description, price, photo} = req.body;
+        const newProduct = new Product({id, saucer_name, category, description, price, photo});
         await newProduct.save();
         return res.status(200).json({
             message : "Producto registrado",
