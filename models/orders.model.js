@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
   _id: { type: String},  
-  numero_mesa: { type: Number},
+  numero_mesa: { type: String},
   user_mesero: { type: String},
   orden: [
     {
