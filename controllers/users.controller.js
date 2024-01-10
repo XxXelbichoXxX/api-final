@@ -142,3 +142,24 @@ exports.deleteUser = async (req, res) => {
         });
     }
 };
+exports.checkDuplicates = async (req, res) => {
+  try {
+    const { userName, email } = req.query;
+    const existingUser = await User.findOne({ $or: [{ userName }, { email }] });
+
+    if (existingUser) {
+      return res.status(200).json({
+        exists: true,
+      });
+    }
+
+    return res.status(200).json({
+      exists: false,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al verificar duplicados",
+      error,
+    });
+  }
+};

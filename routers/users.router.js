@@ -9,5 +9,6 @@ router.get ("/:userName", usersController.getUserInfo);
 router.post ("/login/", usersController.loginUser);
 router.put ("/:userName", usersController.updateUser);
 router.delete ("/:userName", usersController.deleteUser);
+router.get("/check-duplicates", usersController.checkDuplicates);
 
 module.exports = router;
