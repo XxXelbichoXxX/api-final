@@ -59,7 +59,7 @@ exports.loginUser = async (req, res) => {
           });
         }
         const token = jwt.sign({ userName: user.userName }, "secreto", {
-          expiresIn: "8h",
+          expiresIn: "1h",
         });
 
         let formatUser = {
@@ -141,25 +141,4 @@ exports.deleteUser = async (req, res) => {
             data: error,
         });
     }
-};
-exports.checkDuplicates = async (req, res) => {
-  try {
-    const { userName, email } = req.query;
-    const existingUser = await User.findOne({ $or: [{ userName }, { email }] });
-
-    if (existingUser) {
-      return res.status(200).json({
-        exists: true,
-      });
-    }
-
-    return res.status(200).json({
-      exists: false,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Error al verificar duplicados",
-      error,
-    });
-  }
 };
